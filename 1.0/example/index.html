@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>StickyTemplate Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../StickyTemplate.js"></script>
+
+		<style type="text/css">
+
+		p.subtitle{
+			font-size: 24px;
+		}
+
+		span.red{
+			color: red;
+		}
+
+		span.blue{
+			color: blue;
+		}
+
+		</style>
+
+	</head>
+	<body>
+
+		<script type="text/javascript">
+
+
+	StickyTemplate.loadHTML( 
+		'header', 
+		'<div><h1></h1><p class="subtitle"></p>'
+		);
+
+	StickyTemplate.loadHTML( 
+		'text', 
+		'<div><p>%text%</p><img src="" alt=""/></div>'
+		);
+
+
+
+	$header = StickyTemplate.getJQuery( 'header',
+		{
+			'h1' : 'Big Header Text',
+			'p.subtitle' : 'Subtitle Text'
+		});
+
+	$('body').append( $header );
+
+
+	var $text = $('<span>This <span class="red">text</span> is <span class="blue">colored</span></span>');
+
+	$text = StickyTemplate.getJQuery( 'text',
+		{
+			'p$class' : 'red-text',
+			'%text%' : $text,
+			'img$src' : 'img/stickybeat.png'
+		});
+
+	$('body').append( $text );
+
+
+	StickyTemplate.loadFile( 'templates/table.html',
+
+		function(){
+
+			var $table = StickyTemplate.jq( 'table' );
+
+			$('body').append( $table );
+
+			for( var n=0; n<10; n++ ){
+
+				var nr = n + 1;
+
+				var $row = StickyTemplate.jq( 'table-row', 
+					{
+					'.first-name' : 'First ' + nr, 
+					'.last-name' : 'Last ' + nr 
+					});
+
+				$table.append( $row );
+			}
+		});
+
+
+		</script>
+		
+	</body>
+</html>

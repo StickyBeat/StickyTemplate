@@ -96,7 +96,7 @@ Get template with jQuery objects for parameter values.
 Defining multiple templates in a single HTML file (or string)
 -------------------------------------------------------------
 
-Elements with an id attribute are removed from template contents and defined as templates of their own.
+Elements with a data-sticky-template attribute are removed from template contents and defined as templates of their own.
 
 table.html:
 
@@ -105,7 +105,7 @@ table.html:
 			<th class="first-name">First name</th>
 			<th class="last-name">Last name</th>
 		</tr>
-		<tr id="table-row">
+		<tr data-sticky-template="table-row">
 			<th class="first-name"></th>
 			<th class="last-name"></th>
 		</tr>

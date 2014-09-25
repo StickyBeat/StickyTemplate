@@ -51,11 +51,11 @@ function( name, html ){
 
 	var $jq = $(html);
 
-	$jq.find('[id]').each( function(){
+	$jq.find('[data-sticky-template]').each( function(){
 		var $sub = $(this);
 		$sub.remove();
-		var subName = $sub.attr('id');
-		$sub.removeAttr('id');
+		var subName = $sub.data('sticky-template');
+		$sub.removeData('id');
 		StickyTemplate.loadHTML( subName, $sub.get(0).outerHTML );
 	});
 

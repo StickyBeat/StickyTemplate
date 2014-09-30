@@ -27,7 +27,18 @@ function( files, callback ){
 
 		StickyTemplate.templates[ name ] = template;
 
-		$.get( file, function( html ){
+		var url = file;
+
+		if( url.indexOf('?') == -1 ){
+			url += '?';
+		}
+		else{
+			url += '&';
+		}
+
+		url += 'ac='+new Date().getTime();
+
+		$.get( url, function( html ){
 
 			StickyTemplate.loadHTML( this.name, html );
 
@@ -55,7 +66,7 @@ function( name, html ){
 		var $sub = $(this);
 		$sub.remove();
 		var subName = $sub.data('sticky-template');
-		$sub.removeData('id');
+		$sub.removeAttr('data-sticky-template');
 		StickyTemplate.loadHTML( subName, $sub.get(0).outerHTML );
 	});
 

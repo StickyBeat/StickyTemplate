@@ -136,6 +136,10 @@ function( $jq, params ){
 
 		var value = params[ selector ];
 
+		if( value == undefined ){
+			value = '';
+		}
+
 		var selectorParts = selector.split( /\$/g );
 
 		selector = selectorParts[0];

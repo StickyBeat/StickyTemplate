@@ -119,38 +119,46 @@ function( name, params ){
 	}
 
 	if( params ){
-		for( var selector in params ){
-			if( selector.substr(0,1) == '%' ){
-				continue;
-			}
-
-			var value = params[ selector ];
-
-			var selectorParts = selector.split( /\$/g );
-
-			selector = selectorParts[0];
-
-			var attribute = null;
-
-			if( selectorParts.length > 1 ){
-				attribute = selectorParts[1];
-			}
-
-			var $targets = $jq.find( selector ).addBack( selector );
-
-			if( attribute ){
-				$targets.attr( attribute, value );
-			}
-			else if( value.jquery ){
-				$targets.empty().append( value );
-			}
-			else{
-				$targets.text( value );
-			}
-		}
+		StickyTemplate.setParams( $jq, params );
 	}
 
 	return $jq;
+};
+
+StickyTemplate.setParams = 
+StickyTemplate.params = 
+function( $jq, params ){
+
+	for( var selector in params ){
+		if( selector.substr(0,1) == '%' ){
+			continue;
+		}
+
+		var value = params[ selector ];
+
+		var selectorParts = selector.split( /\$/g );
+
+		selector = selectorParts[0];
+
+		var attribute = null;
+
+		if( selectorParts.length > 1 ){
+			attribute = selectorParts[1];
+		}
+
+		var $targets = $jq.find( selector ).addBack( selector );
+
+		if( attribute ){
+			$targets.attr( attribute, value );
+		}
+		else if( value.jquery ){
+			$targets.empty().append( value );
+		}
+		else{
+			$targets.text( value );
+		}
+	}
+
 };
 
 StickyTemplate.getElement =

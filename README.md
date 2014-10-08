@@ -91,6 +91,14 @@ Get template with jQuery objects for parameter values.
 			'%text%' : $('<span><span class="red">red text</span>, <span class="blue">blue text</span></span>'),
 		});
 
+CSS selector params can also be applied to already existing jQuery objects in the same fasion.
+
+	$text = StickyTemplate.setParams( $header,
+		{
+			'h1' : 'Big Header Text',
+			'p.subtitle' : 'Subtitle Text'
+		});
+
 
 
 Defining multiple templates in a single HTML file (or string)
@@ -150,6 +158,11 @@ The following are equivalent:
 
 	StickyTemplate.getHTML
 	StickyTemplate.html
+ 
+The following are equivalent:
+
+	StickyTemplate.setParams
+	StickyTemplate.params
 
 
 Questions, comments and suggestions

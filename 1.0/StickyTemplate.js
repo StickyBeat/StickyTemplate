@@ -104,7 +104,7 @@ function( name, params ){
 				value = value.get(0).outerHTML;
 			}
 
-			html = html.replace( token, value );
+			html = html.replace( new RegExp( token, "g"), value );
 			anyTokens = true;
 		}
 	}
